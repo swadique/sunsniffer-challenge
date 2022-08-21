@@ -1,9 +1,15 @@
 import express from "express";
 import { vaccineSummery } from "../controller";
-import errorResponseMiddleWare from "../middleware/errors.middleware";
+import validatorMiddleware from "../middleware/validator.middleware";
+import { vaccineSummeryValidator } from "../validators/vaccine.validator";
 
 const router = express.Router();
 
-router.get("/vaccine-summary", vaccineSummery, errorResponseMiddleWare);
+router.get(
+  "/vaccine-summary",
+  ...vaccineSummeryValidator,
+  validatorMiddleware,
+  vaccineSummery
+);
 
 export default router;

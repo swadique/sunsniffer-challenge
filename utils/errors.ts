@@ -1,9 +1,9 @@
 class GeneralError extends Error {
-  details: string;
-  constructor(message: string, details: string | null = null) {
+  details: object | undefined;
+  constructor(message: string, details: object | undefined = undefined) {
     super();
     this.message = message;
-    this.details = details as string;
+    this.details = details;
   }
   getCode() {
     return 500;
@@ -27,9 +27,4 @@ class UnAuthorised extends GeneralError {
   }
 }
 
-module.exports = {
-  GeneralError,
-  BadRequest,
-  NotFound,
-  UnAuthorised,
-};
+export { GeneralError, BadRequest, NotFound, UnAuthorised };

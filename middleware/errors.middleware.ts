@@ -1,7 +1,13 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
+import { GeneralError } from "../utils/errors";
 
-const errorResponseMiddleWare = (err: Error, req: Request, res: Response) => {
-  console.log("Hey");
+const errorResponseMiddleWare = (
+  err: Error,
+  req: Request,
+  res: Response,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  _next: NextFunction
+) => {
   if (err instanceof GeneralError) {
     return res.status(err.getCode()).json({
       status: "FAILED",

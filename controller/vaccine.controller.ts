@@ -13,8 +13,6 @@ export const vaccineSummery = async (
     const dateTo = req.query.dateTo as string;
     const sort = req.query.sort as string;
 
-    next();
-
     const result = await vaccineSummeryHelper(
       country,
       dateFrom,
